@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- The goal of this site was to create a personal minimialist porfolio/info pages. -->
+	<!-- Desgin challenge" Make it look "good" and functional without javascript. -->
+    <title> Davy Huang </title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="Lab1_style.css">
+</head>
+
+<body>
+    <div class="nav">
+        <ul class="nav_bar">
+            <li class="left"><a href="index.html">Home</a></li>
+			<li class="left"><a href="#procedure">Procedure overview</a></li>
+			<li class="left"><a href="#block_diagram">Block Diagrams</a></li>
+			<li class="left"><a href="#Results">Results</a></li>
+			<li class="left"><a href="#Arm">Arm</a></li>
+
+            <li class="left"><a href="#Con">Contact</a></li>
+			
+            <li class="right"><a href="
+                    https://drive.google.com/file/d/0B8jbICB3aVNtWkYwMDJPZmliYkk/view?usp=sharing
+                    ">Download Resume</a></li>
+			<li class="right"><a href="
+                    https://github.com/Davy-Huang
+                    ">Github</a></li>
+            <!-- hosted on google drive so it is easier to change outside htm-->
+        </ul>
+    </div>
+
+    <div class="banner">
+        <!-- picture from free stock photo site: pexels.com -->
+        <a name="Home"></a> 
+        <div class="banner_pic"></div>
+        <div class="banner_text">
+            <h1 class="title">Davy Huang </h1>
+        </div>
+    </div>
+
+
+<div class="info">
+
+    <a name="more_info_cv"></a>
+    <div class="content">
+        <br/> <h2>Automated Door Opening Arm</h2>
+          <p>
+			&emsp;&emsp;
+			With the William E. Carter School located in Boston Massachusetts as a client, 
+			I am working with a team of four to develop a door opening mechanism as a senior design project. 
+			By researching and applying Computer Vision, we want to enable those confined to a wheelchair to 
+			open a door with minimal user input and in keeping with the Carter School’s mission statement, 
+			maximize personal independence.   
+          </p>
+          </br>
+		  </br>
+    </div>
+	
+	<a name="procedure"></a>
+	<div class="content">
+        <br/> <h2>Procedure overview</h2>
+		<div class="desc">
+			<p>
+			
+            &emsp;&emsp;The system will detect the location of a door handle with a computer vision component,
+			unlatch the handle via arobotic arm, and then open the door the linear actuators. 
+			</p>
+        </div> 
+		
+        <div class="pic" style="background: url('Block Diagram_full.jpg') no-repeat; height:520px; width:960px;"></div>
+		
+		<div class="desc">
+	
+			</br>
+			<h4>Above is a brief outline of the door opening process.</h4>
+			<ol type="1" style="margin: auto 100px">
+			<li>Users button press will send a wakeup signal to the microcontroller</li>
+				<ol type="a">
+				<li>We will be using a Beaglebone Black programed primarily in C++</li>
+				</ol>
+			<li>The camera will be activated and exit its lower power mode</li>
+			<li>The camera will acquire pixel data</li>
+				<ol type="a">
+				<li>While a Kinect will be utilized for the final product, for Computer Vision tests we can utilize a generic laptop camera</li>
+				</ol>
+			<li>Once the raw data is send back to the microprocessor, the camera will enter its low power mode</li>
+			<li>Positional data on the door handle will be extracted and sent the robotic arm</li>
+				<ol type="a">
+				<li>As of December 2016, we can identify two common types of door handles: door levers and door knobs.</li>
+				</ol>
+			<li>The arm will attempt to unlatch the door handle</li>
+			<li>Sensors on the arm will be used to confirm interact with the door handle</li>
+			<li>Feedback will be sent to the user via colored LED to confirm success or failure</li>
+				<ol type="a">
+				<li>Multiple colors may be used to indicate specific issues: door handle undetected, distance too far, low power, ect</li>
+				</ol>
+			<li>Should all condition we met, the linear actuators will physically push/pull open the door</li>
+			</ol>
+
+		
+			</br>
+			</br>
+			</br>
+        </div> 
+          
+    </div>
+	
+	
+	<a name="block_diagram"></a>
+	<div class="content">
+        <br/> <h2> Block Diagrams</h2>
+        <div class="pic" style="background: url('block_diagram_lvl_1.png') no-repeat;
+            height:527px; width:960px;">
+        </div>
+        <div class="desc">
+            <p>
+			&emsp;&emsp;
+              Above is a brief outline of the two main components.
+			  (1) A door handle Detection Component will receive data from a camera and 
+			  will primarily generate coordinate data from the pixel data. 
+			  (2) The Door Opening Component will receive the coordinate data and open the door.
+			</p>
+			<p>
+			&emsp;&emsp;
+			My primary responsibilities focus on the development of the detection component.
+			This can be broken down into two smaller steps.  The initial step utilizes Computer Vision
+			to identify the location of the door handle object within the pixel data and filter out errors based on number of objects.
+			The secondary utilizes the pixel’s identified to find x,y,z positional data and filter out errors based on distance. 
+			</p>
+        </div>
+        
+		<div class="pic" style="background: url('block_diagram_lvl_2.png') no-repeat;
+            height:527px; width:960px;">
+        </div
+		
+		
+		</br>
+    </div>
+	
+	
+	<a name="Results"></a> 
+    <div class="content">
+        <br/> <h2> Results</h2>
+		<div class="desc">
+            <p>
+				&emsp;&emsp;
+				As of December 2016, the primary aspects of the Computer Vision step are complete.
+				As seen below, the approximate pixel region of door handle objects can be identified.
+				The test code utilizes a haar object classifier trained from approximately 800 positive
+				and 900 negative sample images. The demo code exists on my github.
+				</br>
+				</br>
+				Future improvements:
+				</br>&emsp;&emsp;
+				To improve the usability of the classifier, the variety and number of sample images used in
+				training will be increased. In addition the sampling of multiple images per second will allow samples
+				with multiple/no objects detected to be filtered out without major losses in detection time efficiently. 
+            </p>
+        </div>
+        <div class="pic" style="background: url('Haar_doorknob_detection.gif') no-repeat;
+            height:439px; width:781px;">
+        </div>
+
+		
+		<div class="pic" style="background: url('door_handle_distance.png') no-repeat;
+            height:279px; width:380px;">
+        </div>
+        <div class="desc">
+            <p>
+				&emsp;&emsp;
+				In terms of coordinate generation, the primary focus has been on depth aspect.
+				Utilizing the Kinect, we were able to identify depth. In the above image,
+				the outline of a door handle was isolated based on depth position.
+				</br>
+				</br>
+				Future improvements:
+				</br>
+				&emsp;&emsp;
+				This step will be improved upon in the future to incorporate positional
+				data outputs that can be utilized by the arm. 
+            </p>
+			</br>
+			</br>
+        </div>		
+        
+		</br>
+    </div>
+	
+	
+	
+	<a name="Arm"></a> 
+    <div class="content">
+        <br/> <h2> Robotic Arm</h2>
+        <div class="pic" style="background: url('arm.gif') no-repeat;
+            height:269px; width:479px;">
+        </div>
+        <div class="desc">
+            <p>&emsp;&emsp;
+              A robotic arm with 7 degrees of freedom was choosen. It is currently controlled by an Arduino Uno
+			  to test its stability and precision. 					  
+            </p>
+			</br>
+			</br>
+        </div>	
+        
+		</br>
+    </div>
+	
+	
+	
+	
+	<a name="Con"></a> 
+    <div class="content">    
+        <br/> <h2>Contact</h2>
+		<p>
+		&emsp;&emsp;
+			If you have any questions or suggestions feel free to contact me utilizing the information below.	
+		</p>
+        <p style="text-align:center; text-indent:0px;">
+            Email: Davyh@bu.edu</br>
+        </p>
+        </br>
+		</br>
+		</br>
+    </div>
+	
+	
+	
+
+    <div class="footer">
+       Designed for public use<br/> 
+       Davy Huang: 9 December 2016
+    </div>
+</div>
+    
+
+</body>
+</html>
