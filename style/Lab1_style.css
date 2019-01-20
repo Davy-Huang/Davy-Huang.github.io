@@ -71,7 +71,7 @@ div.banner{
     top:50px;
 
 
-    background: url('stars_600.jpg') no-repeat;
+    background: url('../images/stars_600.jpg') no-repeat;
     background-size: 100% 100%;
     opacity: 0.75;
 }
@@ -89,7 +89,7 @@ div.banner_pic {
     margin-left: auto;
     margin-right: auto;
    
-    background: url('pro_pic_400.jpg') no-repeat;
+    background: url('../images/pro_pic_400.jpg') no-repeat;
     background-size: 100% 100%;
     opacity: 1.0;
     /* profile pic */
@@ -193,7 +193,7 @@ div.pic{
     height:338px;
     width:600px;
 
-    background: url('placeholder.jpg') no-repeat;
+    background: url('../images/placeholder.jpg') no-repeat;
     background-size: 100% 100%;
 
 }
